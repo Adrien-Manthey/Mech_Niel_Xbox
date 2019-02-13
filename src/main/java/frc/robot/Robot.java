@@ -17,6 +17,8 @@ import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.Victor;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Camera;
@@ -58,11 +60,22 @@ import edu.wpi.first.wpilibj.networktables.*;
 public class Robot extends TimedRobot {
 
   //Drive Train Motor Declerations
-  double detect2019Targets;
+  
+  // Drive Train with sparks
+
   Spark M_F_L_Drive = new Spark(0);
   Spark M_F_R_Drive = new Spark(3);
   Spark M_B_L_Drive = new Spark(2);
   Spark M_B_R_Drive = new Spark(1);
+
+  // Drive Train with Victor SPX
+
+  /**
+  VictorSPX M_F_L_Drive = new VictorSPX(0);
+  VictorSPX M_F_R_Drive = new VictorSPX(3);
+  VictorSPX M_B_L_Drive = new VictorSPX(2);
+  VictorSPX M_B_R_Drive = new VictorSPX(1);
+  */ 
 
   //Shooter Motor Declerations
 
