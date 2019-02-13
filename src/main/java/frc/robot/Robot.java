@@ -95,8 +95,8 @@ public class Robot extends TimedRobot {
   
     //Solenoids are called S# - number being what port there in
     Solenoid S0 = new Solenoid(0);
-    //Solenoid S1 = new Solenoid(2,1);
-    //Solenoid S2 = new Solenoid(2,2);
+    //Solenoid S1 = new Solenoid(1);
+    //Solenoid S2 = new Solenoid(2);
     Solenoid S3 = new Solenoid(3);
 
 
