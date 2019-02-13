@@ -77,10 +77,15 @@ public class Robot extends TimedRobot {
   VictorSPX M_B_R_Drive = new VictorSPX(1);
   */ 
 
-  //Shooter Motor Declerations
+  //Shooter Motor Declerations with victors
 
   VictorSPX m_v_1 = new VictorSPX(0);
   VictorSPX m_v_2 = new VictorSPX(1);
+
+  //Shooter motor decleration with sparks
+
+  //Spark m_v_1 = new Spark(0);
+  //Spark m_v_2 = new Spark(1);
   
 
 
