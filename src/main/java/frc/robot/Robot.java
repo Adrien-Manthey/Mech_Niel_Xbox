@@ -115,6 +115,8 @@ public class Robot extends TimedRobot {
   public void robotInit() {
 
     Camera.camera();
+    
+  
     m_v_1.set(ControlMode.PercentOutput,0);
     m_v_2.set(ControlMode.PercentOutput,0);
     
@@ -196,7 +198,7 @@ public class Robot extends TimedRobot {
     //Driveing in teleop
     
     Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.75, -1*R_C.getY(GenericHID.Hand.kLeft)*0.75, R_C.getX(GenericHID.Hand.kRight)*0.5);
-    /**
+    
     if(R_C.getRawButton(3)) {
       m_v_1.set(ControlMode.PercentOutput,1);
       m_v_2.set(ControlMode.PercentOutput,1);
@@ -217,7 +219,7 @@ public class Robot extends TimedRobot {
 			
 
     }
-    */
+    
     
     //Pnumatics for pizza intake
      

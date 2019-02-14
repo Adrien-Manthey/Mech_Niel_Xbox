@@ -1,4 +1,5 @@
 package frc.robot;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -178,6 +179,20 @@ public class GripPipethree {
 		
 
 		}
+		public static void findme(Mat image) {
+			GripPipethree pipeline = new GripPipethree();
+			  
+			pipeline.process(image);
+		
+			ArrayList<MatOfPoint> contours = pipeline.findContoursOutput();
+			
+			List<RotatedRect> rectangles = new ArrayList<>();
+			
+			for (MatOfPoint contour : contours ) {
+			  rectangles.add(Imgproc.minAreaRect(new MatOfPoint2f(contour.toArray())));
+			}
+	  
+		  }
 	}
 
 

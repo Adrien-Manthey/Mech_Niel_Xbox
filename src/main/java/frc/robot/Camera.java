@@ -1,6 +1,6 @@
 package frc.robot;
 
-import frc.robot.Robot;
+
 import frc.robot.GripPipethree;
 //import frc.robot.PixyTest;
 //import frc.robot.Main;
@@ -29,33 +29,19 @@ public final class Camera {
 
     }
   
-    /**
-     * Main initialization function. Do not perform any initialization here.
-     *
-     * <p>If you change your main robot class, change the parameter type.
-     */
     public static void camera() {
         //CameraServer.getInstance().addAxisCamera("10.42.29.90"); //axis camera
         CameraServer.getInstance().startAutomaticCapture(); //USB camera
         
         Mat image = new Mat();
-        /**
+
         
-        
-        GripPipethree pipeline = new GripPipethree();
-        
-        pipeline.process(source0);
-    
-        ArrayList<MatOfPoint> contours = pipeline.findContoursOutput();
-        
-        List<RotatedRect> rectangles = new ArrayList<>();
-        
-        for (MatOfPoint contour : contours ) {
-          rectangles.add(Imgproc.minAreaRect(new MatOfPoint2f(contour.toArray())));
-        }
-        */
+
+        GripPipethree.findme(image);
         
         CameraServer.getInstance().putVideo("size", 640, 480);
         CameraServer.getInstance().getVideo().grabFrame(image);
+        
     }
+
   }
