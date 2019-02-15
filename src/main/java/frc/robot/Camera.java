@@ -37,7 +37,7 @@ public final class Camera {
 
         
 
-        GripPipethree.findme(image);
+        //GripPipethree.findme(image);
         
         CameraServer.getInstance().putVideo("size", 640, 480);
         CameraServer.getInstance().getVideo().grabFrame(image);

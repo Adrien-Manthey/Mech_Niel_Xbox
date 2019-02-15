@@ -37,9 +37,9 @@ public class GripPipethree {
 	/**
 	 * This is the primary method that runs the entire pipeline and updates the outputs.
 	 */
-	public void process(Mat source0) {
+	public void process(Mat image) {
 		// Step RGB_Threshold0:
-		Mat rgbThresholdInput = source0;
+		Mat rgbThresholdInput = image;
 		double[] rgbThresholdRed = {48.156474820143885, 157.0904436860068};
 		double[] rgbThresholdGreen = {158.22841726618705, 255.0};
 		double[] rgbThresholdBlue = {73.38129496402877, 148.38737201365188};
@@ -179,20 +179,20 @@ public class GripPipethree {
 		
 
 		}
-		public static void findme(Mat image) {
-			GripPipethree pipeline = new GripPipethree();
-			  
-			pipeline.process(image);
-		
-			ArrayList<MatOfPoint> contours = pipeline.findContoursOutput();
-			
-			List<RotatedRect> rectangles = new ArrayList<>();
-			
-			for (MatOfPoint contour : contours ) {
-			  rectangles.add(Imgproc.minAreaRect(new MatOfPoint2f(contour.toArray())));
-			}
-	  
-		  }
+	public static void findme(Mat image) {
+
+      GripPipethree pipeline = new GripPipethree();
+
+  
+      ArrayList<MatOfPoint> contours = pipeline.findContoursOutput();
+      
+      List<RotatedRect> rectangles = new ArrayList<>();
+      
+      for (MatOfPoint contour : contours ) {
+        rectangles.add(Imgproc.minAreaRect(new MatOfPoint2f(contour.toArray())));
+      }
+
+    }
 	}
 
 

@@ -79,13 +79,23 @@ public class Robot extends TimedRobot {
 
   //Shooter Motor Declerations with victors
 
-  VictorSPX m_v_1 = new VictorSPX(0);
-  VictorSPX m_v_2 = new VictorSPX(1);
+  //VictorSPX m_v_1 = new VictorSPX(0);
+  //VictorSPX m_v_2 = new VictorSPX(1);
 
   //Shooter motor decleration with sparks
 
   //Spark m_v_1 = new Spark(0);
   //Spark m_v_2 = new Spark(1);
+
+  //Shooter Motor Declerations with victors
+
+  VictorSPX m_v_3 = new VictorSPX(0);
+  VictorSPX m_v_4 = new VictorSPX(1);
+  
+  //Shooter motor decleration with sparks
+  
+  //Spark m_v_3 = new Spark(0);
+  //Spark m_v_4 = new Spark(1);
   
 
 
@@ -100,8 +110,8 @@ public class Robot extends TimedRobot {
   
     //Solenoids are called S# - number being what port there in
     Solenoid S0 = new Solenoid(0);
-    //Solenoid S1 = new Solenoid(1);
-    //Solenoid S2 = new Solenoid(2);
+    Solenoid S1 = new Solenoid(1);
+    Solenoid S2 = new Solenoid(2);
     Solenoid S3 = new Solenoid(3);
 
 
@@ -117,9 +127,11 @@ public class Robot extends TimedRobot {
     Camera.camera();
     
   
-    m_v_1.set(ControlMode.PercentOutput,0);
-    m_v_2.set(ControlMode.PercentOutput,0);
+    //m_v_1.set(ControlMode.PercentOutput,0);
+    //m_v_2.set(ControlMode.PercentOutput,0);
     
+    m_v_3.set(ControlMode.PercentOutput,0);
+    m_v_4.set(ControlMode.PercentOutput,0);
     
     
 
@@ -197,8 +209,9 @@ public class Robot extends TimedRobot {
 
     //Driveing in teleop
     
-    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.75, -1*R_C.getY(GenericHID.Hand.kLeft)*0.75, R_C.getX(GenericHID.Hand.kRight)*0.5);
-    
+    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.25);
+    // ball intake mech.
+    /**
     if(R_C.getRawButton(3)) {
       m_v_1.set(ControlMode.PercentOutput,1);
       m_v_2.set(ControlMode.PercentOutput,1);
@@ -219,6 +232,7 @@ public class Robot extends TimedRobot {
 			
 
     }
+    */
     
     
     //Pnumatics for pizza intake
@@ -236,7 +250,43 @@ public class Robot extends TimedRobot {
 			Timer.delay(0.001);
 
     }
-    
+    // Climber pnumatics
+    if(R_C.getRawButton(5)) {
+      S1.set(true);
+      S2.set(true);
+      Timer.delay(0.001);
+
+    }
+
+    else if(R_C.getRawButton(7)){
+      S1.set(false);
+      Timer.delay(0.001);
+
+    }
+    else if(R_C.getRawButton(8)){
+      S2.set(false);
+      Timer.delay(0.001);
+
+    }
+    else{
+      
+    //climber drive wheels
+    }
+    if(R_C.getRawButton(6)) {
+      m_v_3.set(ControlMode.PercentOutput,1);
+      m_v_4.set(ControlMode.PercentOutput,1);
+			
+			
+
+    }
+
+		else {
+      m_v_3.set(ControlMode.PercentOutput,0);
+      m_v_4.set(ControlMode.PercentOutput,0);
+			
+			
+
+    }
     /**
     if(R_C.getRawButton(5)) {
       //S0.set(true);
