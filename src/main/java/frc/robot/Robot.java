@@ -79,8 +79,8 @@ public class Robot extends TimedRobot {
 
   //Shooter Motor Declerations with victors
 
-  //VictorSPX m_v_1 = new VictorSPX(0);
-  //VictorSPX m_v_2 = new VictorSPX(1);
+  VictorSPX m_v_1 = new VictorSPX(0);
+  VictorSPX m_v_2 = new VictorSPX(1);
 
   //Shooter motor decleration with sparks
 
@@ -89,8 +89,8 @@ public class Robot extends TimedRobot {
 
   //Shooter Motor Declerations with victors
 
-  VictorSPX m_v_3 = new VictorSPX(0);
-  VictorSPX m_v_4 = new VictorSPX(1);
+  //VictorSPX m_v_3 = new VictorSPX(0);
+  //VictorSPX m_v_4 = new VictorSPX(1);
   
   //Shooter motor decleration with sparks
   
@@ -127,11 +127,11 @@ public class Robot extends TimedRobot {
     Camera.camera();
     
   
-    //m_v_1.set(ControlMode.PercentOutput,0);
-    //m_v_2.set(ControlMode.PercentOutput,0);
+    m_v_1.set(ControlMode.PercentOutput,0);
+    m_v_2.set(ControlMode.PercentOutput,0);
     
-    m_v_3.set(ControlMode.PercentOutput,0);
-    m_v_4.set(ControlMode.PercentOutput,0);
+    //m_v_3.set(ControlMode.PercentOutput,0);
+    //m_v_4.set(ControlMode.PercentOutput,0);
     
     
 
@@ -209,9 +209,9 @@ public class Robot extends TimedRobot {
 
     //Driveing in teleop
     
-    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.25);
+    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.50, -1*R_C.getY(GenericHID.Hand.kLeft)*0.50, R_C.getX(GenericHID.Hand.kRight)*0.5);
     // ball intake mech.
-    /**
+    
     if(R_C.getRawButton(3)) {
       m_v_1.set(ControlMode.PercentOutput,1);
       m_v_2.set(ControlMode.PercentOutput,1);
@@ -232,7 +232,7 @@ public class Robot extends TimedRobot {
 			
 
     }
-    */
+    
     
     
     //Pnumatics for pizza intake
@@ -269,8 +269,10 @@ public class Robot extends TimedRobot {
 
     }
     else{
+    }
       
     //climber drive wheels
+    /** 
     }
     if(R_C.getRawButton(6)) {
       m_v_3.set(ControlMode.PercentOutput,1);
@@ -287,6 +289,7 @@ public class Robot extends TimedRobot {
 			
 
     }
+    */
     /**
     if(R_C.getRawButton(5)) {
       //S0.set(true);
