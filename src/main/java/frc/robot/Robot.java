@@ -207,9 +207,13 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
 
-    //Driveing in teleop
-    
-    Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.50, -1*R_C.getY(GenericHID.Hand.kLeft)*0.50, R_C.getX(GenericHID.Hand.kRight)*0.5);
+    //Driveing in teleop and hyperspeed
+    if(R_C.getRawButton(6)){
+      Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getX(GenericHID.Hand.kRight)*0.50);
+    }
+    else{
+      Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.5);
+    }
     // ball intake mech.
     
     if(R_C.getRawButton(3)) {
@@ -243,14 +247,16 @@ public class Robot extends TimedRobot {
 			S0.set(true);
 			Timer.delay(0.001);
 
-		}
+    }
+
 
 		else {
-			S0.set(false);
-			Timer.delay(0.001);
+      S0.set(false);
+      Timer.delay(0.001);
 
     }
     // Climber pnumatics
+    /** 
     if(R_C.getRawButton(5)) {
       S1.set(true);
       S2.set(true);
@@ -270,7 +276,8 @@ public class Robot extends TimedRobot {
     }
     else{
     }
-      
+    */
+    
     //climber drive wheels
     /** 
     }
@@ -290,43 +297,7 @@ public class Robot extends TimedRobot {
 
     }
     */
-    /**
-    if(R_C.getRawButton(5)) {
-      //S0.set(true);
-      //S3.set(true);
-      //c.setClosedLoopControl(true);
-      //S2.set(true);
-      //Timer.delay(0.001);
-     
-    }
-    else if(R_C.getRawButton(1)){
-      S0.set(true);
-      S3.set(true);
-      c.setClosedLoopControl(true);
-      Timer.delay(0.001);
-    }
-    else if(R_C.getRawButton(6)) {
-      c.setClosedLoopControl(false);
-      S3.set(true);
-      Timer.delay(0.0001);
-    }
-    else if(R_C.getRawButton(7)) {
-      //S0.set(false);
-      //S3.set(true);
-      //c.setClosedLoopControl(true);
-      //Timer.delay(0.001);
-    }
-    else if(R_C.getRawButton(8)) {
-      //S2.set(false);
-      //c.setClosedLoopControl(true);
-      //Timer.delay(0.001);
-    }
-    else{
-      S3.set(true);
-      c.setClosedLoopControl(true);
-      
-    }
-    */
+   
   }
 
   /**
