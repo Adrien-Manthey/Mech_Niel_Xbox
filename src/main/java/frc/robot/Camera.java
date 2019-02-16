@@ -37,11 +37,16 @@ public final class Camera {
 
         
 
-        //GripPipethree.findme(image);
+        //extracted(image);
         
         CameraServer.getInstance().putVideo("size", 640, 480);
         CameraServer.getInstance().getVideo().grabFrame(image);
         
     }
+    /** 
+    private static void extracted(Mat image) {
+        GripPipethree.findme(image);
+    }
+    */
 
   }
