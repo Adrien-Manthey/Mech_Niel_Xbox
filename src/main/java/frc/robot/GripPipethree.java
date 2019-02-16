@@ -183,6 +183,7 @@ public class GripPipethree {
 
       GripPipethree pipeline = new GripPipethree();
 
+	  pipeline.process(image);
   
       ArrayList<MatOfPoint> contours = pipeline.findContoursOutput();
       
