@@ -18,6 +18,7 @@ import edu.wpi.first.wpilibj.Victor;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.Camera;
 
 /**
@@ -42,10 +43,10 @@ public class Robot extends TimedRobot {
     // Drive Train with Victor SPX
 
       
-      VictorSPX M_F_L_Drive = new VictorSPX(0);
-      VictorSPX M_F_R_Drive = new VictorSPX(3);
-      VictorSPX M_B_L_Drive = new VictorSPX(2);
-      VictorSPX M_B_R_Drive = new VictorSPX(1);
+      WPI_VictorSPX M_F_L_Drive = new WPI_VictorSPX(0);
+      WPI_VictorSPX M_F_R_Drive = new WPI_VictorSPX(3);
+      WPI_VictorSPX M_B_L_Drive = new WPI_VictorSPX(2);
+      WPI_VictorSPX M_B_R_Drive = new WPI_VictorSPX(1);
 
 
       
@@ -68,11 +69,12 @@ public class Robot extends TimedRobot {
   
   //Shooter motor decleration with sparks
   
-  //Spark m_v_3 = new Spark(0);
-  //Spark m_v_4 = new Spark(1);
+  Spark m_v_3 = new Spark(0);
+  Spark m_v_4 = new Spark(1);
   
   // Drive Train Decleration
   MecanumDrive Robo_Drive = new MecanumDrive(M_F_L_Drive, M_B_L_Drive, M_F_R_Drive, M_B_R_Drive);
+  
 
   // Xbox remote setup
   XboxController R_C = new XboxController(0);
@@ -191,7 +193,7 @@ public class Robot extends TimedRobot {
 
     }
     // Climber pnumatics
-    /** 
+    
     if(R_C.getRawButton(5)) {
       S1.set(true);
       S2.set(true);
@@ -211,27 +213,27 @@ public class Robot extends TimedRobot {
     }
     else{
     }
-    */
+  
     
     //climber drive wheels
-    /** 
-    }
+    
+    
     if(R_C.getRawButton(6)) {
-      m_v_3.set(ControlMode.PercentOutput,1);
-      m_v_4.set(ControlMode.PercentOutput,1);
+      m_v_3.set(1);
+      m_v_4.set(1);
 			
 			
 
     }
 
 		else {
-      m_v_3.set(ControlMode.PercentOutput,0);
-      m_v_4.set(ControlMode.PercentOutput,0);
+      m_v_3.set(0);
+      m_v_4.set(0);
 			
 			
 
     }
-    */
+    
    
   }
 
