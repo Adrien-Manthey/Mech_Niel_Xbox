@@ -32,30 +32,34 @@ public class Robot extends TimedRobot {
   //Drive Train Motor Declerations
   
     // Drive Train with sparks
-
+      /**
       Spark M_F_L_Drive = new Spark(0);
       Spark M_F_R_Drive = new Spark(3);
       Spark M_B_L_Drive = new Spark(2);
       Spark M_B_R_Drive = new Spark(1);
-
+      */
+    
     // Drive Train with Victor SPX
 
-      /**
+      
       VictorSPX M_F_L_Drive = new VictorSPX(0);
       VictorSPX M_F_R_Drive = new VictorSPX(3);
       VictorSPX M_B_L_Drive = new VictorSPX(2);
       VictorSPX M_B_R_Drive = new VictorSPX(1);
-      */ 
+
+
+      
+
 
 //Shooter Motor Declerations with victors
 
-  VictorSPX m_v_1 = new VictorSPX(0);
-  VictorSPX m_v_2 = new VictorSPX(1);
+  //VictorSPX m_v_1 = new VictorSPX(0);
+  //VictorSPX m_v_2 = new VictorSPX(1);
 
 //Shooter motor decleration with sparks
 
-  //Spark m_v_1 = new Spark(0);
-  //Spark m_v_2 = new Spark(1);
+  Spark m_v_1 = new Spark(0);
+  Spark m_v_2 = new Spark(1);
 
   //Shooter Motor Declerations with victors
 
@@ -91,9 +95,15 @@ public class Robot extends TimedRobot {
 
     Camera.camera();
     
+    M_F_L_Drive.set(ControlMode.PercentOutput,0);
+    M_F_R_Drive.set(ControlMode.PercentOutput,0);
+    M_B_L_Drive.set(ControlMode.PercentOutput,0);
+    M_B_R_Drive.set(ControlMode.PercentOutput,0);
+
+
   
-    m_v_1.set(ControlMode.PercentOutput,0);
-    m_v_2.set(ControlMode.PercentOutput,0);
+    //m_v_1.set(ControlMode.PercentOutput,0);
+    //m_v_2.set(ControlMode.PercentOutput,0);
     
     //m_v_3.set(ControlMode.PercentOutput,0);
     //m_v_4.set(ControlMode.PercentOutput,0);
@@ -109,6 +119,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    
   }
 
   /**
@@ -151,22 +162,21 @@ public class Robot extends TimedRobot {
     // ball intake mech.
     
     if(R_C.getRawButton(3)) {
-      m_v_1.set(ControlMode.PercentOutput,1);
-      m_v_2.set(ControlMode.PercentOutput,1);
+      //m_v_1.set(ControlMode.PercentOutput,1);
+      m_v_1.set(1);
+      m_v_2.set(1);
     }
     else if(R_C.getRawButton(4)) {
-      m_v_1.set(ControlMode.PercentOutput,-1);
-      m_v_2.set(ControlMode.PercentOutput,-1);
+      m_v_1.set(-1);
+      m_v_2.set(-1);
     }
 
 		else {
-      m_v_1.set(ControlMode.PercentOutput,0);
-      m_v_2.set(ControlMode.PercentOutput,0);
+      m_v_1.set(0);
+      m_v_2.set(0);
     }
     
     //Pnumatics for pizza intake
-     
-    
     
 		if(R_C.getRawButton(1)) {
 			S0.set(true);

@@ -35,22 +35,23 @@ public final class Camera {
         CameraServer.getInstance().startAutomaticCapture(); //USB camera
         
         Mat image = new Mat();
-
-        //trying to error trap the image processing
+        
         try{
             GripPipethree.findme(image);
         }
-        catch(Exception e) {
-            Timer.delay(0.001);
+        catch(Exception e){
+            
         }
         finally{
-            Timer.delay(0.001);
+            
         }
 
-        CameraServer.getInstance().putVideo("size", 640, 480);
         CameraServer.getInstance().getVideo().grabFrame(image);
         
+        
     }
+
+
 
 
   }
