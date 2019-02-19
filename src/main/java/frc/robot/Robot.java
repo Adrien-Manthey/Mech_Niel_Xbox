@@ -4,7 +4,6 @@
 /* must be accompanied by the FIRST BSD license file in the root directory of */
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
-
 package frc.robot;
 
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -12,8 +11,6 @@ import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.drive.MecanumDrive;
 import edu.wpi.first.wpilibj.Spark;
-import org.opencv.core.Mat;
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.Timer;
@@ -22,33 +19,6 @@ import edu.wpi.first.wpilibj.Victor;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import frc.robot.Camera;
-//import java.util.ArrayList;
-//import java.util.List;
-/** 
-import java.util.ArrayList;
-import frc.robot.Camera;
-
-import org.opencv.core.Mat;
-import edu.wpi.cscore.AxisCamera;
-import edu.wpi.cscore.UsbCamera;
-import edu.wpi.first.wpilibj.vision.VisionRunner;
-import edu.wpi.first.wpilibj.vision.VisionThread;
-import edu.wpi.first.vision.VisionPipeline;
-
-import org.opencv.core.*;
-import edu.wpi.first.cameraserver.CameraServer;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.*;
-import frc.robot.GripPipeline;
-import edu.wpi.first.wpilibj.networktables.*;
-*/
-
-
-
-
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -61,28 +31,28 @@ public class Robot extends TimedRobot {
 
   //Drive Train Motor Declerations
   
-  // Drive Train with sparks
+    // Drive Train with sparks
 
-  Spark M_F_L_Drive = new Spark(0);
-  Spark M_F_R_Drive = new Spark(3);
-  Spark M_B_L_Drive = new Spark(2);
-  Spark M_B_R_Drive = new Spark(1);
+      Spark M_F_L_Drive = new Spark(0);
+      Spark M_F_R_Drive = new Spark(3);
+      Spark M_B_L_Drive = new Spark(2);
+      Spark M_B_R_Drive = new Spark(1);
 
-  // Drive Train with Victor SPX
+    // Drive Train with Victor SPX
 
-  /**
-  VictorSPX M_F_L_Drive = new VictorSPX(0);
-  VictorSPX M_F_R_Drive = new VictorSPX(3);
-  VictorSPX M_B_L_Drive = new VictorSPX(2);
-  VictorSPX M_B_R_Drive = new VictorSPX(1);
-  */ 
+      /**
+      VictorSPX M_F_L_Drive = new VictorSPX(0);
+      VictorSPX M_F_R_Drive = new VictorSPX(3);
+      VictorSPX M_B_L_Drive = new VictorSPX(2);
+      VictorSPX M_B_R_Drive = new VictorSPX(1);
+      */ 
 
-  //Shooter Motor Declerations with victors
+//Shooter Motor Declerations with victors
 
   VictorSPX m_v_1 = new VictorSPX(0);
   VictorSPX m_v_2 = new VictorSPX(1);
 
-  //Shooter motor decleration with sparks
+//Shooter motor decleration with sparks
 
   //Spark m_v_1 = new Spark(0);
   //Spark m_v_2 = new Spark(1);
@@ -97,8 +67,6 @@ public class Robot extends TimedRobot {
   //Spark m_v_3 = new Spark(0);
   //Spark m_v_4 = new Spark(1);
   
-
-
   // Drive Train Decleration
   MecanumDrive Robo_Drive = new MecanumDrive(M_F_L_Drive, M_B_L_Drive, M_F_R_Drive, M_B_R_Drive);
 
@@ -113,9 +81,6 @@ public class Robot extends TimedRobot {
     Solenoid S1 = new Solenoid(1);
     Solenoid S2 = new Solenoid(2);
     Solenoid S3 = new Solenoid(3);
-
-
-
 
   /**
    * This function is run when the robot is first started up and should be
@@ -133,36 +98,7 @@ public class Robot extends TimedRobot {
     //m_v_3.set(ControlMode.PercentOutput,0);
     //m_v_4.set(ControlMode.PercentOutput,0);
     
-    
-
-
-
-
-
-
     }
-
-
-
-
-    
-
-
-
-
-    
-
-
-
-
-			
-		
-         
-       
-			
-
-  
-
   /**
    * This function is called every robot packet, no matter the mode. Use
    * this for items like diagnostics that you want ran during disabled,
@@ -189,7 +125,6 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     
-
   }
 
   /**
@@ -197,8 +132,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-
-    
+ 
   }
 
   /**
@@ -219,25 +153,16 @@ public class Robot extends TimedRobot {
     if(R_C.getRawButton(3)) {
       m_v_1.set(ControlMode.PercentOutput,1);
       m_v_2.set(ControlMode.PercentOutput,1);
-			
-			
-
     }
     else if(R_C.getRawButton(4)) {
       m_v_1.set(ControlMode.PercentOutput,-1);
       m_v_2.set(ControlMode.PercentOutput,-1);
-
     }
 
 		else {
       m_v_1.set(ControlMode.PercentOutput,0);
       m_v_2.set(ControlMode.PercentOutput,0);
-			
-			
-
     }
-    
-    
     
     //Pnumatics for pizza intake
      

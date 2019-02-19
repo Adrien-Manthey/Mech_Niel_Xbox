@@ -2,6 +2,7 @@ package frc.robot;
 
 
 import frc.robot.GripPipethree;
+import edu.wpi.first.wpilibj.Timer;
 //import frc.robot.PixyTest;
 //import frc.robot.Main;
 import org.opencv.core.*;
@@ -35,18 +36,21 @@ public final class Camera {
         
         Mat image = new Mat();
 
-        
+        //trying to error trap the image processing
+        try{
+            GripPipethree.findme(image);
+        }
+        catch(Exception e) {
+            Timer.delay(0.001);
+        }
+        finally{
+            Timer.delay(0.001);
+        }
 
-        //extracted(image);
-        
         CameraServer.getInstance().putVideo("size", 640, 480);
         CameraServer.getInstance().getVideo().grabFrame(image);
         
     }
-    /** 
-    private static void extracted(Mat image) {
-        GripPipethree.findme(image);
-    }
-    */
+
 
   }

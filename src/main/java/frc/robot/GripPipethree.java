@@ -100,7 +100,7 @@ public class GripPipethree {
 	 * @param blue The min and max blue.
 	 * @param output The image in which to store the output.
 	 */
-	private void rgbThreshold(Mat input, double[] red, double[] green, double[] blue,
+	private static void rgbThreshold(Mat input, double[] red, double[] green, double[] blue,
 		Mat out) {
 		Imgproc.cvtColor(input, out, Imgproc.COLOR_BGR2RGB);
 		Core.inRange(out, new Scalar(red[0], green[0], blue[0]),
@@ -114,7 +114,7 @@ public class GripPipethree {
 	 * @param maskSize the size of the mask.
 	 * @param output The image in which to store the output.
 	 */
-	private void findContours(Mat input, boolean externalOnly,
+	private static void findContours(Mat input, boolean externalOnly,
 		List<MatOfPoint> contours) {
 		Mat hierarchy = new Mat();
 		contours.clear();
@@ -146,7 +146,7 @@ public class GripPipethree {
 	 * @param minRatio minimum ratio of width to height
 	 * @param maxRatio maximum ratio of width to height
 	 */
-	private void filterContours(List<MatOfPoint> inputContours, double minArea,
+	private static void filterContours(List<MatOfPoint> inputContours, double minArea,
 		double minPerimeter, double minWidth, double maxWidth, double minHeight, double
 		maxHeight, double[] solidity, double maxVertexCount, double minVertexCount, double
 		minRatio, double maxRatio, List<MatOfPoint> output) {
