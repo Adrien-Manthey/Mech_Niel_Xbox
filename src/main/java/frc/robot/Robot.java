@@ -147,7 +147,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
-        //Driveing in teleop and hyperspeed
+        //Driveing in sandstorm and hyperspeed
+        //change this button to something else(being used later in the code for climberwheels)
         if(R_C.getRawButton(6)){
           Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getX(GenericHID.Hand.kRight)*0.50);
         }
@@ -195,6 +196,7 @@ public class Robot extends TimedRobot {
   public void teleopPeriodic() {
 
     //Driveing in teleop and hyperspeed
+    //change this button to something else(being used later in the code for climberwheels)
     if(R_C.getRawButton(6)){
       Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getX(GenericHID.Hand.kRight)*0.50);
     }
@@ -256,7 +258,6 @@ public class Robot extends TimedRobot {
     
     //climber drive wheels
     
-    //change this button to something else(being used eariler in the code for hyper speed)
     if(R_C.getRawButton(6)) {
       m_v_3.set(1);
       m_v_4.set(1);
