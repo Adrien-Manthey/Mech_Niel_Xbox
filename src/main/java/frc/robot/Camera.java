@@ -24,6 +24,7 @@ import org.opencv.core.Mat;
 //import edu.wpi.first.wpilibj.vision.VisionRunner;
 //import edu.wpi.first.wpilibj.vision.VisionThread;
 //import edu.wpi.first.vision.VisionPipeline;
+import frc.robot.PixyTest; 
 
 public final class Camera {
     public Camera() {
@@ -36,15 +37,7 @@ public final class Camera {
         
         Mat image = new Mat();
         
-        try{
-            GripPipethree.findme(image);
-        }
-        catch(Exception e){
-            
-        }
-        finally{
-            
-        }
+        //PixyTest.test();
 
         CameraServer.getInstance().getVideo().grabFrame(image);
         

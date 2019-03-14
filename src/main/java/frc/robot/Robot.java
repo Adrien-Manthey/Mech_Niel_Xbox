@@ -20,6 +20,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import frc.robot.Camera;
+import frc.robot.PixyTest; 
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -33,7 +34,7 @@ public class Robot extends TimedRobot {
   //Drive Train Motor Declerations
   
     // Drive Train with sparks
-      /**
+      /** 
       Spark M_F_L_Drive = new Spark(0);
       Spark M_F_R_Drive = new Spark(3);
       Spark M_B_L_Drive = new Spark(2);
@@ -47,7 +48,7 @@ public class Robot extends TimedRobot {
       WPI_VictorSPX M_F_R_Drive = new WPI_VictorSPX(3);
       WPI_VictorSPX M_B_L_Drive = new WPI_VictorSPX(2);
       WPI_VictorSPX M_B_R_Drive = new WPI_VictorSPX(1);
-
+      
 
       
 
@@ -62,15 +63,15 @@ public class Robot extends TimedRobot {
   Spark m_v_1 = new Spark(0);
   Spark m_v_2 = new Spark(1);
 
-  //Shooter Motor Declerations with victors
+  //ClimbDrive Motor Declerations with victors
 
-  //VictorSPX m_v_3 = new VictorSPX(0);
-  //VictorSPX m_v_4 = new VictorSPX(1);
+  //VictorSPX m_v_3 = new VictorSPX(2);
+  //VictorSPX m_v_4 = new VictorSPX(3);
   
-  //Shooter motor decleration with sparks
+  //ClimbDrive motor decleration with sparks
   
-  Spark m_v_3 = new Spark(0);
-  Spark m_v_4 = new Spark(1);
+  Spark m_v_3 = new Spark(2);
+  Spark m_v_4 = new Spark(3);
   
   // Drive Train Decleration
   MecanumDrive Robo_Drive = new MecanumDrive(M_F_L_Drive, M_B_L_Drive, M_F_R_Drive, M_B_R_Drive);
@@ -83,10 +84,10 @@ public class Robot extends TimedRobot {
     Compressor c = new Compressor(0);
   
     //Solenoids are called S# - number being what port there in
-    Solenoid S0 = new Solenoid(0);
-    Solenoid S1 = new Solenoid(1);
-    Solenoid S2 = new Solenoid(2);
-    Solenoid S3 = new Solenoid(3);
+    Solenoid S0 = new Solenoid(1,0);
+    Solenoid S1 = new Solenoid(1,1);
+    Solenoid S2 = new Solenoid(1,2);
+    Solenoid S3 = new Solenoid(1,3);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -95,7 +96,8 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
 
-    Camera.camera();
+    //PixyTest.test();
+    Camera.camera(); 
     
     M_F_L_Drive.set(ControlMode.PercentOutput,0);
     M_F_R_Drive.set(ControlMode.PercentOutput,0);
@@ -145,6 +147,44 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousPeriodic() {
+        //Driveing in teleop and hyperspeed
+        if(R_C.getRawButton(6)){
+          Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getX(GenericHID.Hand.kRight)*0.50);
+        }
+        else{
+          Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.5);
+        }
+        // ball intake mech.
+        
+        if(R_C.getRawButton(3)) {
+          m_v_1.set(1);
+          m_v_2.set(1);
+        }
+        else if(R_C.getRawButton(4)) {
+          m_v_1.set(-1);
+          m_v_2.set(-1);
+        }
+    
+        else {
+          m_v_1.set(0);
+          m_v_2.set(0);
+        }
+        
+        //Pnumatics for pizza intake
+        
+        if(R_C.getRawButton(1)) {
+          S0.set(true);
+          Timer.delay(0.001);
+    
+        }
+    
+    
+        else {
+          S0.set(false);
+          Timer.delay(0.001);
+    
+        }
+
  
   }
 
@@ -195,12 +235,11 @@ public class Robot extends TimedRobot {
     // Climber pnumatics
     
     if(R_C.getRawButton(5)) {
-      S1.set(true);
+      S0.set(true);
       S2.set(true);
       Timer.delay(0.001);
 
     }
-
     else if(R_C.getRawButton(7)){
       S1.set(false);
       Timer.delay(0.001);
@@ -217,21 +256,17 @@ public class Robot extends TimedRobot {
     
     //climber drive wheels
     
-    
+    //change this button to something else(being used eariler in the code for hyper speed)
     if(R_C.getRawButton(6)) {
       m_v_3.set(1);
       m_v_4.set(1);
 			
-			
-
     }
 
 		else {
-      m_v_3.set(0);
-      m_v_4.set(0);
+     m_v_3.set(0);
+     m_v_4.set(0);
 			
-			
-
     }
     
    
