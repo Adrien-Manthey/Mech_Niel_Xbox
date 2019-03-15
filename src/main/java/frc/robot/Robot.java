@@ -44,29 +44,26 @@ public class Robot extends TimedRobot {
     // Drive Train with Victor SPX
 
       
-      WPI_VictorSPX M_F_L_Drive = new WPI_VictorSPX(0);
-      WPI_VictorSPX M_F_R_Drive = new WPI_VictorSPX(3);
-      WPI_VictorSPX M_B_L_Drive = new WPI_VictorSPX(2);
-      WPI_VictorSPX M_B_R_Drive = new WPI_VictorSPX(1);
+      WPI_VictorSPX M_F_L_Drive = new WPI_VictorSPX(6);
+      WPI_VictorSPX M_F_R_Drive = new WPI_VictorSPX(2);
+      WPI_VictorSPX M_B_L_Drive = new WPI_VictorSPX(4);
+      WPI_VictorSPX M_B_R_Drive = new WPI_VictorSPX(3);
       
 
       
 
 
-//Shooter Motor Declerations with victors
 
-  //VictorSPX m_v_1 = new VictorSPX(0);
-  //VictorSPX m_v_2 = new VictorSPX(1);
 
-//Shooter motor decleration with sparks
+//Shooter motor decleration with victors
+VictorSPX m_v_1 = new VictorSPX(5);
+VictorSPX m_v_2 = new VictorSPX(1);
 
-  Spark m_v_1 = new Spark(0);
-  Spark m_v_2 = new Spark(1);
 
-  //ClimbDrive Motor Declerations with victors
+  //Spark m_v_1 = new Spark(0);
+  //Spark m_v_2 = new Spark(1);
 
-  //VictorSPX m_v_3 = new VictorSPX(2);
-  //VictorSPX m_v_4 = new VictorSPX(3);
+
   
   //ClimbDrive motor decleration with sparks
   
@@ -81,13 +78,13 @@ public class Robot extends TimedRobot {
   XboxController R_C = new XboxController(0);
 
     //Setting up pnumatics
-    Compressor c = new Compressor(0);
+    Compressor c = new Compressor(7);
   
     //Solenoids are called S# - number being what port there in
-    Solenoid S0 = new Solenoid(1,0);
-    Solenoid S1 = new Solenoid(1,1);
-    Solenoid S2 = new Solenoid(1,2);
-    Solenoid S3 = new Solenoid(1,3);
+    Solenoid S0 = new Solenoid(7,0);
+    Solenoid S1 = new Solenoid(7,1);
+    Solenoid S2 = new Solenoid(7,2);
+    Solenoid S3 = new Solenoid(7,3);
 
   /**
    * This function is run when the robot is first started up and should be
@@ -103,7 +100,8 @@ public class Robot extends TimedRobot {
     M_F_R_Drive.set(ControlMode.PercentOutput,0);
     M_B_L_Drive.set(ControlMode.PercentOutput,0);
     M_B_R_Drive.set(ControlMode.PercentOutput,0);
-
+    m_v_1.set(ControlMode.PercentOutput,0);
+    m_v_2.set(ControlMode.PercentOutput,0);
 
   
     //m_v_1.set(ControlMode.PercentOutput,0);
@@ -155,25 +153,27 @@ public class Robot extends TimedRobot {
         else{
           Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.5);
         }
+        
         // ball intake mech.
         
-        if(R_C.getRawButton(3)) {
-          m_v_1.set(1);
-          m_v_2.set(1);
+        if(R_C.getRawButton(1)) {
+          m_v_1.set(ControlMode.PercentOutput,1);
+          m_v_2.set(ControlMode.PercentOutput,1);
         }
-        else if(R_C.getRawButton(4)) {
-          m_v_1.set(-1);
-          m_v_2.set(-1);
+        else if(R_C.getRawButton(2)) {
+          m_v_1.set(ControlMode.PercentOutput,-1);
+          m_v_2.set(ControlMode.PercentOutput,-1);
         }
     
         else {
-          m_v_1.set(0);
-          m_v_2.set(0);
+          m_v_1.set(ControlMode.PercentOutput,0);
+          m_v_2.set(ControlMode.PercentOutput,0);
         }
+        
         
         //Pnumatics for pizza intake
         
-        if(R_C.getRawButton(1)) {
+        if(R_C.getRawButton(3)) {
           S0.set(true);
           Timer.delay(0.001);
     
@@ -185,6 +185,7 @@ public class Robot extends TimedRobot {
           Timer.delay(0.001);
     
         }
+        
 
  
   }
@@ -203,26 +204,28 @@ public class Robot extends TimedRobot {
     else{
       Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.5);
     }
+    
     // ball intake mech.
     
-    if(R_C.getRawButton(3)) {
+    if(R_C.getRawButton(1)) {
       //m_v_1.set(ControlMode.PercentOutput,1);
-      m_v_1.set(1);
-      m_v_2.set(1);
+      m_v_1.set(ControlMode.PercentOutput,1);
+      m_v_2.set(ControlMode.PercentOutput,1);
     }
-    else if(R_C.getRawButton(4)) {
-      m_v_1.set(-1);
-      m_v_2.set(-1);
+    else if(R_C.getRawButton(2)) {
+      m_v_1.set(ControlMode.PercentOutput,-1);
+      m_v_2.set(ControlMode.PercentOutput,-1);
     }
 
 		else {
-      m_v_1.set(0);
-      m_v_2.set(0);
+      m_v_1.set(ControlMode.PercentOutput,0);
+      m_v_2.set(ControlMode.PercentOutput,0);
     }
+    
     
     //Pnumatics for pizza intake
     
-		if(R_C.getRawButton(1)) {
+		if(R_C.getRawButton(3)) {
 			S0.set(true);
 			Timer.delay(0.001);
 
@@ -234,6 +237,7 @@ public class Robot extends TimedRobot {
       Timer.delay(0.001);
 
     }
+    /**
     // Climber pnumatics
     
     if(R_C.getRawButton(5)) {
@@ -269,6 +273,7 @@ public class Robot extends TimedRobot {
      m_v_4.set(0);
 			
     }
+    */
     
    
   }
