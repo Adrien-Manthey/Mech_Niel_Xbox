@@ -67,8 +67,8 @@ VictorSPX m_v_2 = new VictorSPX(1);
   
   //ClimbDrive motor decleration with sparks
   
-  Spark m_v_3 = new Spark(2);
-  Spark m_v_4 = new Spark(3);
+  Spark m_v_3 = new Spark(0);
+  Spark m_v_4 = new Spark(1);
   
   // Drive Train Decleration
   MecanumDrive Robo_Drive = new MecanumDrive(M_F_L_Drive, M_B_L_Drive, M_F_R_Drive, M_B_R_Drive);
@@ -81,9 +81,9 @@ VictorSPX m_v_2 = new VictorSPX(1);
     Compressor c = new Compressor(7);
   
     //Solenoids are called S# - number being what port there in
-    Solenoid S0 = new Solenoid(7,0);
-    Solenoid S1 = new Solenoid(7,1);
-    Solenoid S2 = new Solenoid(7,2);
+    Solenoid HatchSolenoid = new Solenoid(7,0);
+    Solenoid BackSolenoid = new Solenoid(7,1);
+    Solenoid FrontSolenoid = new Solenoid(7,2);
     Solenoid S3 = new Solenoid(7,3);
 
   /**
@@ -147,20 +147,20 @@ VictorSPX m_v_2 = new VictorSPX(1);
   public void autonomousPeriodic() {
         //Driveing in sandstorm and hyperspeed
         //change this button to something else(being used later in the code for climberwheels)
-        if(R_C.getRawButton(6)){
-          Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getX(GenericHID.Hand.kRight)*0.50);
+        if(R_C.getBumper(GenericHID.Hand.kRight)){
+          Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80,R_C.getRawAxis(4)*0.50);
         }
         else{
-          Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.5);
+          Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60,R_C.getRawAxis(4)*0.50);
         }
         
         // ball intake mech.
         
-        if(R_C.getRawButton(1)) {
-          m_v_1.set(ControlMode.PercentOutput,1);
-          m_v_2.set(ControlMode.PercentOutput,1);
+        if(R_C.getYButton()) {
+          m_v_1.set(ControlMode.PercentOutput,0.8);
+          m_v_2.set(ControlMode.PercentOutput,0.8);
         }
-        else if(R_C.getRawButton(2)) {
+        else if(R_C.getBButton()) {
           m_v_1.set(ControlMode.PercentOutput,-1);
           m_v_2.set(ControlMode.PercentOutput,-1);
         }
@@ -173,15 +173,15 @@ VictorSPX m_v_2 = new VictorSPX(1);
         
         //Pnumatics for pizza intake
         
-        if(R_C.getRawButton(3)) {
-          S0.set(true);
+        if(R_C.getAButton()) {
+          HatchSolenoid.set(true);
           Timer.delay(0.001);
     
         }
     
     
         else {
-          S0.set(false);
+          HatchSolenoid.set(false);
           Timer.delay(0.001);
     
         }
@@ -198,21 +198,21 @@ VictorSPX m_v_2 = new VictorSPX(1);
 
     //Driveing in teleop and hyperspeed
     //change this button to something else(being used later in the code for climberwheels)
-    if(R_C.getRawButton(6)){
-      Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getX(GenericHID.Hand.kRight)*0.50);
+    if(R_C.getBumper(GenericHID.Hand.kRight)){
+      Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.80, -1*R_C.getY(GenericHID.Hand.kLeft)*0.80, R_C.getRawAxis(4)*0.50);
     }
     else{
-      Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getX(GenericHID.Hand.kRight)*0.5);
+      Robo_Drive.driveCartesian(R_C.getX(GenericHID.Hand.kLeft)*0.60, -1*R_C.getY(GenericHID.Hand.kLeft)*0.60, R_C.getRawAxis(4)*0.50);
     }
     
     // ball intake mech.
     
-    if(R_C.getRawButton(1)) {
+    if(R_C.getYButton()) {
       //m_v_1.set(ControlMode.PercentOutput,1);
-      m_v_1.set(ControlMode.PercentOutput,1);
-      m_v_2.set(ControlMode.PercentOutput,1);
+      m_v_1.set(ControlMode.PercentOutput,0.8);
+      m_v_2.set(ControlMode.PercentOutput,0.8);
     }
-    else if(R_C.getRawButton(2)) {
+    else if(R_C.getBButton()) {
       m_v_1.set(ControlMode.PercentOutput,-1);
       m_v_2.set(ControlMode.PercentOutput,-1);
     }
@@ -225,34 +225,34 @@ VictorSPX m_v_2 = new VictorSPX(1);
     
     //Pnumatics for pizza intake
     
-		if(R_C.getRawButton(3)) {
-			S0.set(true);
+		if(R_C.getAButton()) {
+			HatchSolenoid.set(true);
 			Timer.delay(0.001);
 
     }
 
 
 		else {
-      S0.set(false);
+      HatchSolenoid.set(false);
       Timer.delay(0.001);
 
     }
-    /**
+    
     // Climber pnumatics
     
-    if(R_C.getRawButton(5)) {
-      S0.set(true);
-      S2.set(true);
-      Timer.delay(0.001);
-
-    }
-    else if(R_C.getRawButton(7)){
-      S1.set(false);
+    if(R_C.getBumper(GenericHID.Hand.kLeft)) {
+      BackSolenoid. set(true);
+      FrontSolenoid.set(true);
       Timer.delay(0.001);
 
     }
     else if(R_C.getRawButton(8)){
-      S2.set(false);
+      BackSolenoid.set(false);
+      Timer.delay(0.001);
+
+    }
+    else if(R_C.getRawButton(7)){
+      FrontSolenoid.set(false);
       Timer.delay(0.001);
 
     }
@@ -262,7 +262,7 @@ VictorSPX m_v_2 = new VictorSPX(1);
     
     //climber drive wheels
     
-    if(R_C.getRawButton(6)) {
+    if(R_C.getXButton()) {
       m_v_3.set(1);
       m_v_4.set(1);
 			
@@ -273,7 +273,12 @@ VictorSPX m_v_2 = new VictorSPX(1);
      m_v_4.set(0);
 			
     }
-    */
+    
+    
+    
+    
+    
+    
     
    
   }
